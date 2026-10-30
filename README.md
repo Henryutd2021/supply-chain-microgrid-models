@@ -54,7 +54,7 @@ The complete mathematics, keyed to the publications' equation numbers, is in [do
 ```bash
 git clone https://github.com/Henryutd2021/supply-chain-microgrid-models.git
 cd supply-chain-microgrid-models
-python -m venv .venv && source .venv/bin/activate     # Python 3.10 or newer (tested with 3.12)
+python3 -m venv .venv && source .venv/bin/activate    # needs Python 3.10+ (check: python3 --version); if older, use e.g. python3.12
 pip install -e ".[test]"
 python examples/minimal.py                             # Parts A, B, C, E on synthetic data, HiGHS
 python examples/risk_scenarios.py                      # capacity-factor scenarios, VaR, CVaR, minimax
