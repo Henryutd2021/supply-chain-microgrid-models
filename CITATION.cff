@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the publication of the model you use (preferred citation and references below) and this software."
+title: "Supply chains with on-site microgrids: location-allocation and VPP scheduling framework"
+version: "1.0.0"
+repository-code: "https://github.com/Henryutd2021/supply-chain-microgrid-models"
+license: MIT
+authors:
+  - family-names: Li
+    given-names: Honglin
+    orcid: "https://orcid.org/0000-0002-8405-3032"
+keywords:
+  - facility location
+  - supply chain network design
+  - microgrid sizing
+  - transactive energy
+  - virtual power plant
+  - mixed-integer programming
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Li
+      given-names: Honglin
+      orcid: "https://orcid.org/0000-0002-8405-3032"
+    - family-names: Jin
+      given-names: Tongdan
+    - family-names: Novoa
+      given-names: Clara
+  title: "Facility and microgrid location-allocation for integrated supply chain and transactive energy operations"
+  journal: "Applied Mathematical Modelling"
+  volume: 119
+  start: 119
+  end: 136
+  year: 2023
+  doi: 10.1016/j.apm.2023.02.014
+references:
+  - type: conference-paper
+    authors:
+      - family-names: Li
+        given-names: Honglin
+        orcid: "https://orcid.org/0000-0002-8405-3032"
+      - family-names: Jin
+        given-names: Tongdan
+      - family-names: Fainman
+        given-names: Emily Zhu
+    title: "Locating and allocating warehouse facilities and prosumer microgrid in transactive energy paradigm"
+    collection-title: "2023 International Conference on Smart Electrical Grid and Renewable Energy (SEGRE)"
+    publisher:
+      name: IEEE
+    start: 410
+    end: 415
+    year: 2023
+    doi: 10.1109/SEGRE58867.2023.00071
+  - type: thesis
+    authors:
+      - family-names: Li
+        given-names: Honglin
+        orcid: "https://orcid.org/0000-0002-8405-3032"
+    title: "Planning Virtual Power Plants for Smart Factories and Industry 4.0 with Renewable and Thermal Cogeneration"
+    thesis-type: "M.S. thesis"
+    institution:
+      name: "Texas State University"
+    year: 2021
+    url: "https://hdl.handle.net/10877/17829"
