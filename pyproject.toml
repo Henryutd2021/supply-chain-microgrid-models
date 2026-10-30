@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sc-microgrid"
-version = "1.0.0"
+version = "1.0.1"
 description = "Facility, warehouse and microgrid location-allocation for supply chains with transactive energy, and virtual power plant scheduling (framework of Li et al., AMM 2023 and SEGRE 2023, and Li, M.S. thesis 2021)"
 readme = "README.md"
 license = {text = "MIT"}

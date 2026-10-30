@@ -48,12 +48,12 @@ The models mix binary and integer location and flow decisions with hourly contin
 
 ## Problem size
 
-Three-tier model with $K$ factories, $N$ warehouses, $S$ stores, $I$ products, $R$ resources, $G$ technologies, $J$ periods of $T$ hours:
+Three-tier model with $`K`$ factories, $`N`$ warehouses, $`S`$ stores, $`I`$ products, $`R`$ resources, $`G`$ technologies, $`J`$ periods of $`T`$ hours:
 
-- binary variables: $K + N + IJKN + INS$;
-- integer variables: $IJKN + IJNS + I(J+1)N + IJN$;
-- hourly continuous variables: $J(K+N)(3T + 1)$ (storage level, sale, purchase), plus $(K+N)(G+1)$ capacities;
-- constraints: dominated by the $J T (K+N)$ energy balances and, in the big-value form, the $2JT(K+N)$ trade bounds and $JT(K+N)$ storage bounds.
+- binary variables: $`K + N + IJKN + INS`$;
+- integer variables: $`IJKN + IJNS + I(J+1)N + IJN`$;
+- hourly continuous variables: $`J(K+N)(3T + 1)`$ (storage level, sale, purchase), plus $`(K+N)(G+1)`$ capacities;
+- constraints: dominated by the $`J T (K+N)`$ energy balances and, in the big-value form, the $`2JT(K+N)`$ trade bounds and $`JT(K+N)`$ storage bounds.
 
 Measured on a laptop (Apple M-series, Python 3.12, Pyomo 6.10, HiGHS 1.15):
 

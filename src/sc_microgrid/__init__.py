@@ -33,7 +33,7 @@ from .synthetic import (capital_recovery_factor, synthetic_cf_scenarios, synthet
 from .vpp import day_ahead, intraday, rolling_horizon, schedule_table
 from .wmla import build_wmla, feasible_open_sets, solve_enumerated, wmla_summary
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 __all__ = [
     "build_fmla", "expected_cf", "fmla_summary", "scale_cf", "with_cf", "z_value",

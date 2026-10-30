@@ -14,7 +14,7 @@ base = synthetic_supply_chain()                       # or read_instance("my_cas
 case = replace(base, buy_price_usd_per_mwh={x: p * 0.75 for x, p in base.buy_price_usd_per_mwh.items()})
 m = build_fmla(case)
 solve(m)
-print(fmla_summary(m, case)["components_usd"])
+print({k: float(v) for k, v in fmla_summary(m, case)["components_usd"].items()})
 ```
 
 Nested objects (technologies, storage) are changed the same way, for example `replace(base.technologies["pv"], capacity_cost_usd_per_mw=...)`.
@@ -45,8 +45,8 @@ Comparing a case with the grid-only case gives the value of the on-site microgri
 1. For the thesis setting, set the factory base load to zero (`replace(inst, factory_load_mw={k: 0.0 for k in inst.factories})`); Model 5.1 has no base-load term in (5.17).
 2. Define the scenarios: a medium scenario (the representative capacity factors) and lower and higher scenarios, each with a probability. Scaling the medium series is one simple way (`scale_cf`); historical years are another (`with_cf`).
 3. Solve the expected-value model (Model 5.1): `with_cf(inst, expected_cf(scenarios, probabilities))`.
-4. Solve the deterministic model under each scenario: `scenario_costs(inst, scale)` gives $C_\omega$ and each scenario's design.
-5. Evaluate the scenario costs with VaR, CVaR and minimax over a range of confidence levels $\phi$: `risk_table(cost, prob, phis)`. VaR and CVaR do not decrease as $\phi$ rises; minimax does not depend on it.
+4. Solve the deterministic model under each scenario: `scenario_costs(inst, scale)` gives $`C_\omega`$ and each scenario's design.
+5. Evaluate the scenario costs with VaR, CVaR and minimax over a range of confidence levels $`\phi`$: `risk_table(cost, prob, phis)`. VaR and CVaR do not decrease as $`\phi`$ rises; minimax does not depend on it.
 
 From the command line:
 

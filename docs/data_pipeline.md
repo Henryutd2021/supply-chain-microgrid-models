@@ -34,27 +34,27 @@ flowchart LR
 ### 1. Network
 
 - List the candidate factories, candidate warehouses and stores with their coordinates. Site names must be unique across factories and warehouses (they share the hourly file).
-- Compute distances $d_{kn}$ (factory → warehouse) and $\hat d_{ns}$ (warehouse → store), or $d_{ns}$ in the two-tier and fixed-charge models, in km.
-- Choose the production period (a week in AMM 2023, $T = 168$ h) and the number of periods $J$. A year of 52 weekly periods has 8,736 hours.
+- Compute distances $`d_{kn}`$ (factory → warehouse) and $`\hat d_{ns}`$ (warehouse → store), or $`d_{ns}`$ in the two-tier and fixed-charge models, in km.
+- Choose the production period (a week in AMM 2023, $`T = 168`$ h) and the number of periods $`J`$. A year of 52 weekly periods has 8,736 hours.
 
 ### 2. Costs and capacities
 
-- Annualize one-time costs with the capital recovery factor $\phi = r(1+r)^n / ((1+r)^n - 1)$ (`capital_recovery_factor(rate, years)`) for the discount rate $r$ and the lifetime $n$. Facility costs $F_k$, $\hat F_n$ are entered already annualized; technology and storage capacity costs are entered as one-time costs with their own $\phi_g$, $\phi_{ES}$.
+- Annualize one-time costs with the capital recovery factor $`\phi = r(1+r)^n / ((1+r)^n - 1)`$ (`capital_recovery_factor(rate, years)`) for the discount rate $`r`$ and the lifetime $`n`$. Facility costs $`F_k`$, $`\hat F_n`$ are entered already annualized; technology and storage capacity costs are entered as one-time costs with their own $`\phi_g`$, $`\phi_{ES}`$.
 - Production cost per item excludes energy, which the model buys or generates.
 - Holding and backorder costs are per item and period; shipping costs per item and km.
-- Warehouse capacity $\gamma_{in}$ is per product and period (three-tier model) or for the horizon (two-tier and fixed-charge models).
+- Warehouse capacity $`\gamma_{in}`$ is per product and period (three-tier model) or for the horizon (two-tier and fixed-charge models).
 
 ### 3. Demand
 
 - From sales records with one row per product, store, period of the year and historical year, `demand_statistics` returns the mean and the standard deviation per (product, period, store).
-- The service level $\alpha$ sets the safety stock through $z_\alpha$ in Eq. (35).
+- The service level $`\alpha`$ sets the safety stock through $`z_\alpha`$ in Eq. (35).
 - The two-tier and fixed-charge models take one demand total per store for the horizon.
 
 ### 4. Production resources and energy
 
-- Resource use $w_{ikr}$ and availability $W_{jkr}$ in consistent units (for example labour hours and machine hours per period).
-- Energy per item $e_{ik}$ in MWh; base load of an open factory $L_k$ and power demand of a warehouse $\hat L_n$ in MW.
-- Trucks: self-weight $m_{EV}$ (kg) and energy intensity $q_{EV}$ (MWh per kg and km); trip rates between the tiers in trips per hour (for one round trip per day, $1/24$).
+- Resource use $`w_{ikr}`$ and availability $`W_{jkr}`$ in consistent units (for example labour hours and machine hours per period).
+- Energy per item $`e_{ik}`$ in MWh; base load of an open factory $`L_k`$ and power demand of a warehouse $`\hat L_n`$ in MW.
+- Trucks: self-weight $`m_{EV}`$ (kg) and energy intensity $`q_{EV}`$ (MWh per kg and km); trip rates between the tiers in trips per hour (for one round trip per day, $`1/24`$).
 
 ### 5. Capacity factors
 
@@ -64,7 +64,7 @@ For each candidate site, from hourly weather records of several years:
 2. Wind: scale the measured wind speed to hub height with a power law, then apply a power curve. `wind_cf` uses a generic curve (0 below cut-in, cubic rise to rated speed, 1 up to cut-out, 0 above); a manufacturer's curve can be used instead.
 3. PV: convert irradiance to a capacity factor relative to 1,000 W/m² and derate for cell temperature (`pv_cf`, NOCT approximation).
 4. Build one representative year per site, for example the hour-by-hour average over the years, or a typical meteorological year.
-5. Cut the year into $J$ periods of $T$ hours (`to_periods`).
+5. Cut the year into $`J`$ periods of $`T`$ hours (`to_periods`).
 
 AMM 2023 and the thesis estimated hourly capacity factors for every candidate city from about a decade of hourly weather records (AMM 2023 Section 4.1). Any source of hourly wind speed and irradiance can be used. Check its terms of use before sharing derived series.
 
@@ -95,7 +95,7 @@ Scenarios can be built from the historical spread of the capacity factors, for e
 | service level strictly between 0 and 1; VPP lower limits not above upper limits | ✓ |
 | total capacity of the candidate warehouses covers the total demand (two-tier and fixed-charge models) | ✓ |
 | total production resources of all factories cover the demand plus safety stock in every period | – |
-| $M$ larger than every quantity it bounds, but not by orders of magnitude ([formulation.md](formulation.md#conventions-of-this-implementation)) | – |
+| $`M`$ larger than every quantity it bounds, but not by orders of magnitude ([formulation.md](formulation.md#conventions-of-this-implementation)) | – |
 | the unclipped maximum of each capacity-factor series: values above 1 point to a unit or capacity error | – |
 | purchase price at least the sale price in every hour, unless arbitrage is intended | – |
 | VPP: heat load reachable with the CHP limits and the heat-to-power ratio; delivery-day surpluses fit the storage, or use the spill extension | – |
@@ -126,7 +126,7 @@ An instance is a directory with `instance.json` and, for the hourly models, `hou
 
 | Key | Shape | Unit |
 |---|---|---|
-| `sites`, `stores`, `hours` | lists, integer $T$ | – |
+| `sites`, `stores`, `hours` | lists, integer $`T`$ | – |
 | `fixed_cost_usd`, `capacity_items`, `site_load_mw` | {site: value} | \$/yr, items, MW |
 | `demand_items` | {store: value} | items over the horizon |
 | `ship_cost_usd_per_item_km`, `distance_km` | {site: {store: value}} | \$/item/km, km |
@@ -141,7 +141,7 @@ An instance is a directory with `instance.json` and, for the hourly models, `hou
 | Key | Shape | Unit |
 |---|---|---|
 | `factories`, `warehouses`, `stores`, `products`, `resources` | lists of names | – |
-| `periods`, `hours` | integers $J$, $T$ | – |
+| `periods`, `hours` | integers $`J`$, $`T`$ | – |
 | `factory_fixed_cost_usd`, `factory_load_mw` | {factory: value} | \$/yr, MW |
 | `warehouse_fixed_cost_usd`, `warehouse_load_mw` | {warehouse: value} | \$/yr, MW |
 | `production_cost_usd_per_item`, `energy_mwh_per_item` | {product: {factory: value}} | \$/item, MWh/item |

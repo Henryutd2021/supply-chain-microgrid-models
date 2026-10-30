@@ -30,9 +30,9 @@ The models decide where to open factories and warehouses, how to route products 
 | Aspect | In the publications | In this framework |
 |---|---|---|
 | Network | 3 candidate warehouses and 6 stores (thesis Section 4.1; SEGRE 2023); 4 candidate factories, 2 candidate warehouses and 4 stores, 2 or 8 products (AMM) | any sets |
-| Time | 52 weekly production periods of 168 hours | any $J$ periods of $T$ hours; shorter horizons weighted to a year |
+| Time | 52 weekly production periods of 168 hours | any $`J`$ periods of $`T`$ hours; shorter horizons weighted to a year |
 | Renewables | wind turbines and PV, hourly capacity factors per candidate city | any technologies with hourly capacity factors per site |
-| Demand | normal, met at a service level through a chance constraint | same, deterministic equivalent with $z_\alpha$ |
+| Demand | normal, met at a service level through a chance constraint | same, deterministic equivalent with $`z_\alpha`$ |
 | Energy | hourly balance per open site: facility load, production energy, electric-truck energy, storage, purchase and sale | same |
 
 The complete mathematics, keyed to the publications' equation numbers, is in [docs/formulation.md](docs/formulation.md).
@@ -82,7 +82,8 @@ inst = read_instance("my_case/")             # your own data, see docs/data_pipe
 m = build_fmla(inst)                         # AMM 2023 formulation
 solve(m)                                     # or solve(m, solver="gurobi")
 s = fmla_summary(m, inst)
-print(s["open_factories"], s["open_warehouses"], s["components_usd"])
+print(s["open_factories"], s["open_warehouses"])
+print({k: float(v) for k, v in s["components_usd"].items()})   # cost components, $/yr
 ```
 
 **About the example data:** `sc_microgrid.synthetic` generates small invented networks, weather and prices with round, illustrative costs. They show how the models behave and how to read their output. Their numbers say nothing about any real place, company or market.

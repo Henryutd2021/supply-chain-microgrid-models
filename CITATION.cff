@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite the publication of the model you use (preferred citation and references below) and this software."
 title: "Supply chains with on-site microgrids: location-allocation and VPP scheduling framework"
-version: "1.0.0"
+version: "1.0.1"
 repository-code: "https://github.com/Henryutd2021/supply-chain-microgrid-models"
 license: MIT
 authors:
