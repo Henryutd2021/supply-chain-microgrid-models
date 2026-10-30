@@ -11,11 +11,13 @@ from dataclasses import replace
 from sc_microgrid import synthetic_supply_chain, build_fmla, solve, fmla_summary
 
 base = synthetic_supply_chain()                       # or read_instance("my_case/")
-case = replace(base, buy_price_usd_per_mwh={x: p * 0.75 for x, p in base.buy_price_usd_per_mwh.items()})
+case = replace(base, buy_price_usd_per_mwh={x: p * 1.25 for x, p in base.buy_price_usd_per_mwh.items()})  # grid purchase prices +25 %
 m = build_fmla(case)
 solve(m)
 print({k: float(v) for k, v in fmla_summary(m, case)["components_usd"].items()})
 ```
+
+Keep purchase prices at or above sale prices in every hour; otherwise buying and reselling grid electricity is profitable without limit and the trade variables run up to their bounds.
 
 Nested objects (technologies, storage) are changed the same way, for example `replace(base.technologies["pv"], capacity_cost_usd_per_mw=...)`.
 
