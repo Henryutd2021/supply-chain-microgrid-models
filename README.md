@@ -1,5 +1,7 @@
 # Supply chains with on-site microgrids: location-allocation and VPP scheduling framework
 
+Author: [Honglin Li](https://henryutd2021.github.io/)
+
 A documented, runnable implementation of the optimization models in:
 
 > Honglin Li, Tongdan Jin, Clara Novoa. **Facility and microgrid location-allocation for integrated supply chain and transactive energy operations.** *Applied Mathematical Modelling* 119 (2023) 119–136. [doi:10.1016/j.apm.2023.02.014](https://doi.org/10.1016/j.apm.2023.02.014)
